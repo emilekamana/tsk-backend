@@ -1,5 +1,5 @@
 export interface User {
-  id?: number;
+  id?: string;
   name: {
     type: string;
     required: true;
@@ -9,10 +9,7 @@ export interface User {
     enum: ['Client', 'Provider', 'All'];
     required: true;
   };
-  password: {
-    type: string;
-    required: true;
-  };
+  password: string;
   email: {
     type: string;
     required: true;

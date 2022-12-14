@@ -1,19 +1,19 @@
+import { IsEmail, IsEnum, IsNotEmpty } from 'class-validator';
+import { clientType } from '../enums/clientType';
+
 export class CreateUserDto {
-  readonly name: {
-    type: string;
-    required: true;
-  };
+  @IsNotEmpty()
+  readonly name: string;
+
+  @IsEnum(clientType)
   readonly type: {
     type: string;
-    enum: ['Client', 'Provider', 'All'];
-    required: true;
+    enum: ['CLIENT', 'WORKER', 'ALL'];
   };
-  password: {
-    type: string;
-    required: true;
-  };
-  readonly email: {
-    type: string;
-    required: true;
-  };
+
+  @IsNotEmpty()
+  password: string;
+
+  @IsEmail()
+  readonly email: string;
 }
