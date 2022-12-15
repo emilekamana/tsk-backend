@@ -23,12 +23,12 @@ export class WorkerController {
 
   @UseGuards(WorkerJwtAuthGuard)
   @Post()
-  @UseInterceptors(FileInterceptor('image'))
+  @UseInterceptors(FileInterceptor('file'))
   create(
-    @UploadedFile() image: Express.Multer.File,
+    @UploadedFile() file: Express.Multer.File,
     @Body() createWorkerDto: CreateWorkerDto,
   ) {
-    return this.workerService.create(createWorkerDto, image);
+    return this.workerService.create(createWorkerDto, file);
   }
 
   @UseGuards(JwtAuthGuard)

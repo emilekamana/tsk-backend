@@ -23,13 +23,10 @@ export class WorkerService {
         throw new BadRequestException('Invalid file type.');
       });
 
-      console.log(newImage);
-
-      createWorkerDto.image = {
-        publid_id: newImage.public_id,
-        secure_url: newImage.secure_url,
-        signature: newImage.signature,
-      };
+      // console.log(newImage);
+      createWorkerDto.image.publid_id = newImage.public_id;
+      createWorkerDto.image.secure_url = newImage.secure_url;
+      createWorkerDto.image.signature = newImage.signature;
     }
     return await this.workerModel.create(createWorkerDto);
   }
@@ -48,31 +45,20 @@ export class WorkerService {
     image: Express.Multer.File,
   ) {
     if (image) {
-      const user = await this.findOne(id);
-      if (user) {
-        if (user.image) {
-          const result = await this.cloudinary.deleteImage(user.image);
-          if (!result) {
-            console.log("Couldn't delete image: ", result);
-          }
-          console.log('deleted image: ', result);
-        }
-        const newImage = await this.cloudinary
-          .uploadImage(image)
-          .catch((err) => {
-            console.log(err);
-            throw new BadRequestException('Invalid file type.');
-          });
+      const newImage = await this.cloudinary.uploadImage(image).catch((err) => {
+        console.log(err);
+        throw new BadRequestException('Invalid file type.');
+      });
 
-        console.log('new image: ', newImage);
+      console.log('new image: ', newImage);
 
-        updateWorkerDto.image = {
-          publid_id: newImage.public_id,
-          secure_url: newImage.secure_url,
-          signature: newImage.signature,
-        };
-      }
+      updateWorkerDto.image = {
+        publid_id: newImage.public_id,
+        secure_url: newImage.secure_url,
+        signature: newImage.signature,
+      };
     }
+
     return await this.workerModel.updateOne(
       { _id: id },
       { $set: updateWorkerDto },

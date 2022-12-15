@@ -10,7 +10,10 @@ export class CloudinaryService {
   ): Promise<UploadApiResponse | UploadApiErrorResponse> {
     return new Promise((resolve, reject) => {
       const upload = v2.uploader.upload_stream((error, result: any) => {
-        if (error) return reject(error);
+        if (error) {
+          console.log(error);
+          return reject(error);
+        }
         resolve(result);
       });
 
@@ -21,7 +24,12 @@ export class CloudinaryService {
   async deleteImage(image: Image) {
     return new Promise((resolve, reject) => {
       const upload = v2.uploader.destroy(image.publid_id, function (err, res) {
-        if (err) reject(err);
+        if (err) {
+          console.log(err);
+          reject(err);
+        }
+
+        console.log(res);
         resolve(res);
       });
     });

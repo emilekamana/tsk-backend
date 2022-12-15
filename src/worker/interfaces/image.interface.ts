@@ -1,5 +1,5 @@
 export interface Image {
-  readonly publid_id: string;
-  readonly secure_url: string;
-  readonly signature: string;
+  publid_id: string;
+  secure_url: string;
+  signature: string;
 }

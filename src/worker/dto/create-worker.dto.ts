@@ -12,5 +12,5 @@ export class CreateWorkerDto {
   readonly shortBio: string;
 
   readonly longBio?: string;
-  image?: Image;
+  image: Image;
 }
