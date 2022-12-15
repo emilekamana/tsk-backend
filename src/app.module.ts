@@ -7,6 +7,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import config from './config/keys';
 import { ConfigModule } from '@nestjs/config';
 import { WorkerModule } from './worker/worker.module';
+import { CloudinaryModule } from './cloudinary/cloudinary.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { WorkerModule } from './worker/worker.module';
     AuthModule,
     MongooseModule.forRoot(config.MongoURI),
     WorkerModule,
+    CloudinaryModule,
   ],
   controllers: [AppController],
   providers: [AppService],

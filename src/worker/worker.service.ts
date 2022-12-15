@@ -1,26 +1,51 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 import { CreateWorkerDto } from './dto/create-worker.dto';
 import { UpdateWorkerDto } from './dto/update-worker.dto';
+import { Worker } from './interfaces/worker.interface';
+import { CloudinaryService } from '../cloudinary/cloudinary.service';
 
 @Injectable()
 export class WorkerService {
-  create(createWorkerDto: CreateWorkerDto) {
-    return 'This action adds a new worker';
+  constructor(
+    @InjectModel('Worker') private workerModel: Model<Worker>,
+    private cloudinary: CloudinaryService,
+  ) {}
+  async create(
+    createWorkerDto: CreateWorkerDto,
+    image: Express.Multer.File,
+  ): Promise<Worker | undefined> {
+    if (image) {
+      console.log(image);
+      const newImage = await this.cloudinary.uploadImage(image).catch((err) => {
+        console.log(err);
+        throw new BadRequestException('Invalid file type.');
+      });
+
+      console.log(newImage);
+
+      createWorkerDto.imageUrl = newImage.secure_url;
+    }
+    return await this.workerModel.create(createWorkerDto);
   }
 
-  findAll() {
-    return `This action returns all worker`;
+  async findAll(): Promise<Worker[]> {
+    return await this.workerModel.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} worker`;
+  async findOne(id: string): Promise<Worker | undefined | null> {
+    return await this.workerModel.findOne({ _id: id });
   }
 
-  update(id: number, updateWorkerDto: UpdateWorkerDto) {
-    return `This action updates a #${id} worker`;
+  async update(id: string, updateWorkerDto: UpdateWorkerDto) {
+    return await this.workerModel.updateOne(
+      { _id: id },
+      { $set: updateWorkerDto },
+    );
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} worker`;
+  async remove(id: number) {
+    return await this.workerModel.deleteOne({ _id: id });
   }
 }
