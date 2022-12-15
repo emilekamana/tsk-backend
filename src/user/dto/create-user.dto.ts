@@ -6,10 +6,7 @@ export class CreateUserDto {
   readonly name: string;
 
   @IsEnum(clientType)
-  readonly type: {
-    type: string;
-    enum: ['CLIENT', 'WORKER', 'ALL'];
-  };
+  readonly type: string;
 
   @IsNotEmpty()
   password: string;

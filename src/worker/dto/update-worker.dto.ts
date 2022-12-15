@@ -1,6 +1,7 @@
 import { PartialType } from '@nestjs/mapped-types';
 import { CreateWorkerDto } from './create-worker.dto';
 import { IsNotEmpty } from 'class-validator';
+import { Image } from '../interfaces/image.interface';
 
 export class UpdateWorkerDto extends PartialType(CreateWorkerDto) {
   @IsNotEmpty()
@@ -10,5 +11,5 @@ export class UpdateWorkerDto extends PartialType(CreateWorkerDto) {
   readonly shortBio: string;
 
   readonly longBio?: string;
-  readonly ImageUrl?: string;
+  image?: Image;
 }

@@ -16,6 +16,7 @@ import { User } from './interfaces/user.interface';
 // import { AuthGuard } from '@nestjs/passport';
 import { JwtStrategy } from 'src/auth/strategies/jwt.strategy';
 import { Response } from 'express';
+import { ClientJwtAuthGuard } from 'src/auth/guards/clientJwt.guard';
 
 @Controller('user')
 export class UserController {
@@ -38,13 +39,13 @@ export class UserController {
     return await this.userService.findOne(id);
   }
 
-  @UseGuards(JwtStrategy)
+  @UseGuards(ClientJwtAuthGuard)
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.userService.update(+id, updateUserDto);
+    return this.userService.update(id, updateUserDto);
   }
 
-  @UseGuards(JwtStrategy)
+  @UseGuards(ClientJwtAuthGuard)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.userService.remove(id);

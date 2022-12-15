@@ -36,3 +36,9 @@ lerna-debug.log*
 
 /src/config
 .env
+
+/node_modules
+/dist
+npm-debug.log
+.DS_Store
+/*.env

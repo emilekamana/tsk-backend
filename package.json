@@ -1,6 +1,9 @@
 {
   "name": "taskee",
   "version": "0.0.1",
+  "engines": {
+    "node": "16.13.1"
+  },
   "description": "",
   "author": "",
   "private": true,

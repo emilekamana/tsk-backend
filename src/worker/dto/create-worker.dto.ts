@@ -1,4 +1,5 @@
 import { IsNotEmpty } from 'class-validator';
+import { Image } from '../interfaces/image.interface';
 
 export class CreateWorkerDto {
   @IsNotEmpty()
@@ -11,5 +12,5 @@ export class CreateWorkerDto {
   readonly shortBio: string;
 
   readonly longBio?: string;
-  imageUrl?: string;
+  image?: Image;
 }

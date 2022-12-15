@@ -1,4 +1,5 @@
 import * as mongoose from 'mongoose';
+import { imageSchema } from './image.schema';
 
 export const WorkerSchema = new mongoose.Schema({
   name: {
@@ -17,8 +18,8 @@ export const WorkerSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  imageUrl: {
-    type: String,
+  image: {
+    type: imageSchema,
     required: false,
   },
 });
