@@ -27,25 +27,25 @@ export class UserController {
     return this.userService.create(res, createUserDto);
   }
 
-  @UseGuards(JwtStrategy)
+  // @UseGuards(JwtStrategy)
   @Get()
   async findAll(): Promise<User[]> {
     return await this.userService.findAll();
   }
 
-  @UseGuards(JwtStrategy)
+  // @UseGuards(JwtStrategy)
   @Get(':id')
   async findOne(@Param('id') id: string): Promise<User | null | undefined> {
     return await this.userService.findOne(id);
   }
 
-  @UseGuards(ClientJwtAuthGuard)
+  // @UseGuards(ClientJwtAuthGuard)
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.userService.update(id, updateUserDto);
   }
 
-  @UseGuards(ClientJwtAuthGuard)
+  // @UseGuards(ClientJwtAuthGuard)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.userService.remove(id);

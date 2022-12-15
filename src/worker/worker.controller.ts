@@ -21,7 +21,7 @@ import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 export class WorkerController {
   constructor(private readonly workerService: WorkerService) {}
 
-  @UseGuards(WorkerJwtAuthGuard)
+  // @UseGuards(WorkerJwtAuthGuard)
   @Post()
   @UseInterceptors(FileInterceptor('file'))
   create(
@@ -31,19 +31,19 @@ export class WorkerController {
     return this.workerService.create(createWorkerDto, file);
   }
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Get()
   findAll() {
     return this.workerService.findAll();
   }
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.workerService.findOne(id);
   }
 
-  @UseGuards(WorkerJwtAuthGuard)
+  // @UseGuards(WorkerJwtAuthGuard)
   @Patch(':id')
   update(
     @Param('id') id: string,
@@ -53,7 +53,7 @@ export class WorkerController {
     return this.workerService.update(id, updateWorkerDto, image);
   }
 
-  @UseGuards(WorkerJwtAuthGuard)
+  // @UseGuards(WorkerJwtAuthGuard)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.workerService.remove(+id);

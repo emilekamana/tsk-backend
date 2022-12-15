@@ -14,19 +14,20 @@ export class WorkerService {
   ) {}
   async create(
     createWorkerDto: CreateWorkerDto,
-    image: Express.Multer.File,
+    file: Express.Multer.File,
   ): Promise<Worker | undefined> {
-    if (image) {
-      console.log(image);
-      const newImage = await this.cloudinary.uploadImage(image).catch((err) => {
+    if (file) {
+      console.log(file);
+      const newImage = await this.cloudinary.uploadImage(file).catch((err) => {
         console.log(err);
         throw new BadRequestException('Invalid file type.');
       });
-
-      // console.log(newImage);
-      createWorkerDto.image.publid_id = newImage.public_id;
-      createWorkerDto.image.secure_url = newImage.secure_url;
-      createWorkerDto.image.signature = newImage.signature;
+      console.log(newImage);
+      createWorkerDto.image = {
+        public_id: newImage.public_id,
+        secure_url: newImage.secure_url,
+        signature: newImage.signature,
+      };
     }
     return await this.workerModel.create(createWorkerDto);
   }
@@ -42,10 +43,10 @@ export class WorkerService {
   async update(
     id: string,
     updateWorkerDto: UpdateWorkerDto,
-    image: Express.Multer.File,
+    file: Express.Multer.File,
   ) {
-    if (image) {
-      const newImage = await this.cloudinary.uploadImage(image).catch((err) => {
+    if (file) {
+      const newImage = await this.cloudinary.uploadImage(file).catch((err) => {
         console.log(err);
         throw new BadRequestException('Invalid file type.');
       });
@@ -53,7 +54,7 @@ export class WorkerService {
       console.log('new image: ', newImage);
 
       updateWorkerDto.image = {
-        publid_id: newImage.public_id,
+        public_id: newImage.public_id,
         secure_url: newImage.secure_url,
         signature: newImage.signature,
       };

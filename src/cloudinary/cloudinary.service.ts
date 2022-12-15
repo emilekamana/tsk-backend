@@ -23,7 +23,7 @@ export class CloudinaryService {
 
   async deleteImage(image: Image) {
     return new Promise((resolve, reject) => {
-      const upload = v2.uploader.destroy(image.publid_id, function (err, res) {
+      const upload = v2.uploader.destroy(image.public_id, function (err, res) {
         if (err) {
           console.log(err);
           reject(err);
