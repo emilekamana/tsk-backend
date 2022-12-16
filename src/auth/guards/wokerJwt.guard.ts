@@ -20,7 +20,7 @@ export class WorkerJwtAuthGuard extends AuthGuard('jwt') {
     }
 
     if (user)
-      if (user.type === 'CLIENT') {
+      if (user.types === 'CLIENT') {
         throw new UnauthorizedException();
       }
 

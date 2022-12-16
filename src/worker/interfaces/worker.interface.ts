@@ -2,7 +2,7 @@ import { Image } from './image.interface';
 
 export interface Worker {
   id?: string;
-  name: string;
+  names: string;
   readonly userId: string;
   shortBio: string;
   longBio?: string;

@@ -5,10 +5,10 @@ import { clientType } from '../enums/clientType';
 
 export class UpdateUserDto extends PartialType(CreateUserDto) {
   @IsNotEmpty()
-  readonly name: string;
+  readonly names: string;
 
   @IsEnum(clientType)
-  readonly type: string;
+  readonly types: string;
 
   @IsNotEmpty()
   password: string;

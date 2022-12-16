@@ -1,11 +1,11 @@
 import * as mongoose from 'mongoose';
 
 export const UserSchema = new mongoose.Schema({
-  name: {
+  names: {
     type: String,
     required: true,
   },
-  type: {
+  types: {
     type: String,
     enum: ['CLIENT', 'WORKER', 'ALL'],
     required: true,

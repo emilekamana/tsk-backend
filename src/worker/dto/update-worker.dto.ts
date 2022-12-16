@@ -5,7 +5,7 @@ import { Image } from '../interfaces/image.interface';
 
 export class UpdateWorkerDto extends PartialType(CreateWorkerDto) {
   @IsNotEmpty()
-  readonly name: string;
+  readonly names: string;
 
   @IsNotEmpty()
   readonly shortBio: string;

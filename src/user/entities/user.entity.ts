@@ -1,10 +1,10 @@
 export class User {
   id?: string;
-  name: {
+  names: {
     type: string;
     required: true;
   };
-  type: {
+  types: {
     type: string;
     enum: ['CLIENT', 'WORKER', 'ALL'];
     required: true;

@@ -3,7 +3,7 @@ import { Image } from '../interfaces/image.interface';
 
 export class CreateWorkerDto {
   @IsNotEmpty()
-  readonly name: string;
+  readonly names: string;
 
   @IsNotEmpty()
   readonly userId: string;
