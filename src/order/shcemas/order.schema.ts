@@ -14,6 +14,10 @@ export const OrderSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  date: {
+    type: Date,
+    required: true,
+  },
   workerId: {
     type: String,
     required: true,

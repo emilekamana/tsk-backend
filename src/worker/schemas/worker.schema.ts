@@ -10,6 +10,16 @@ export const WorkerSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  price: {
+    type: String,
+    required: true,
+    default: '20$',
+  },
+  tags: {
+    type: Array<string>,
+    required: true,
+    default: ['Web development', 'Javascript'],
+  },
   shortBio: {
     type: String,
     required: true,

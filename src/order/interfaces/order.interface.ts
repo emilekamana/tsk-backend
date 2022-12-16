@@ -6,4 +6,5 @@ export interface Order {
   workerId: string;
   description: string;
   status: Status;
+  date: Date;
 }

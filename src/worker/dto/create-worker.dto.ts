@@ -9,6 +9,12 @@ export class CreateWorkerDto {
   readonly userId: string;
 
   @IsNotEmpty()
+  readonly price: string;
+
+  @IsNotEmpty()
+  readonly tags: Array<string>;
+
+  @IsNotEmpty()
   readonly shortBio: string;
 
   readonly longBio?: string;

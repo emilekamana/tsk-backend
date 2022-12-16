@@ -10,4 +10,5 @@ export class CreateOrderDto {
   description: string;
   @IsEnum(Status)
   status: string;
+  date: Date;
 }
