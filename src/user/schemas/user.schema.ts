@@ -7,7 +7,7 @@ export const UserSchema = new mongoose.Schema({
   },
   type: {
     type: String,
-    enum: ['Client', 'Provider', 'All'],
+    enum: ['CLIENT', 'WORKER', 'ALL'],
     required: true,
   },
   password: {

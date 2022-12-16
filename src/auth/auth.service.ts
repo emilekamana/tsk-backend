@@ -46,6 +46,7 @@ export class AuthService {
     this.refreshTokens.push(refreshObject);
 
     return res.send({
+      user: user,
       refreshToken: refreshObject.sign(),
       accessToken: sign(
         {

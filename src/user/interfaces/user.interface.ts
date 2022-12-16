@@ -6,7 +6,7 @@ export interface User {
   };
   type: {
     type: string;
-    enum: ['Client', 'Provider', 'All'];
+    enum: ['CLIENT', 'WORKER', 'ALL'];
     required: true;
   };
   password: string;
