@@ -11,7 +11,6 @@ export class CreateWorkerDto {
   @IsNotEmpty()
   readonly price: string;
 
-  @IsNotEmpty()
   readonly tags: Array<string>;
 
   @IsNotEmpty()

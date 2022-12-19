@@ -18,7 +18,7 @@ export class OrderService {
   }
 
   findWorker(id: string) {
-    return this.orderModel.find({ workerId: id });
+    return this.orderModel.find({ workerId: `${id}` });
   }
 
   findClient(id: string) {

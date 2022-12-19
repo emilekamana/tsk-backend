@@ -7,7 +7,6 @@ export class UpdateWorkerDto extends PartialType(CreateWorkerDto) {
   @IsNotEmpty()
   readonly names: string;
 
-  @IsNotEmpty()
   readonly tags: Array<string>;
 
   @IsNotEmpty()

@@ -20,12 +20,12 @@ export class OrderController {
     return this.orderService.create(createOrderDto);
   }
 
-  @Post('approve')
+  @Post('approve/:id')
   approve(@Param('id') id: string) {
     return this.orderService.approve(id);
   }
 
-  @Post('decline')
+  @Post('decline/:id')
   decline(@Param('id') id: string) {
     return this.orderService.decline(id);
   }
